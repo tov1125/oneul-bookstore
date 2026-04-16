@@ -171,6 +171,59 @@
   .footer-info { font-size: 11px; color: #7a6a56; line-height: 1.9;
     font-family: 'Apple SD Gothic Neo', 'Noto Sans KR', sans-serif; text-align: right; }
 
+  /* ── ANNOUNCE BAR ── */
+  .announce-bar {
+    background: #c9a87c; color: #3a2e22;
+    text-align: center; padding: 11px 24px;
+    font-size: 13px; font-weight: 600;
+    font-family: 'Apple SD Gothic Neo', 'Noto Sans KR', sans-serif;
+    letter-spacing: 0.2px;
+  }
+  .announce-bar strong { font-weight: 800; }
+  .announce-bar a {
+    color: #3a2e22; margin-left: 14px; font-weight: 700;
+    text-decoration: underline; white-space: nowrap;
+  }
+  .announce-sep { margin: 0 10px; opacity: 0.5; }
+
+  /* ── HANKAN ── */
+  .hankan-section { background: #fff; }
+  .hankan-inner {
+    display: grid; grid-template-columns: 1fr 1fr;
+    gap: 56px; align-items: center;
+  }
+  .hankan-stats { display: flex; gap: 0; margin: 32px 0 28px; border: 1px solid #e0d5c5; border-radius: 6px; overflow: hidden; }
+  .stat-item { flex: 1; padding: 20px 18px; text-align: center; border-right: 1px solid #e0d5c5; }
+  .stat-item:last-child { border-right: none; }
+  .stat-num { font-size: 26px; font-weight: 700; color: #c9a87c; line-height: 1.1; }
+  .stat-num span { font-size: 15px; font-weight: 400; color: #7a6a56; }
+  .stat-label { font-size: 11px; color: #7a6a56; margin-top: 5px;
+    font-family: 'Apple SD Gothic Neo', 'Noto Sans KR', sans-serif; line-height: 1.5; }
+  .hankan-features { display: flex; flex-direction: column; gap: 10px; margin-bottom: 28px; }
+  .hf-item {
+    display: flex; align-items: center; gap: 10px;
+    font-size: 13px; color: #7a6a56;
+    font-family: 'Apple SD Gothic Neo', 'Noto Sans KR', sans-serif;
+  }
+  .hf-dot { width: 6px; height: 6px; border-radius: 50%; background: #c9a87c; flex-shrink: 0; }
+  .hankan-visual { position: relative; border-radius: 6px; overflow: hidden; height: 400px; }
+  .hankan-visual img { width: 100%; height: 100%; object-fit: cover; filter: sepia(12%) brightness(0.93); }
+  .hankan-overlay {
+    position: absolute; inset: 0;
+    background: linear-gradient(to top, rgba(58,46,34,0.75) 0%, transparent 55%);
+  }
+  .hankan-badge {
+    position: absolute; bottom: 0; left: 0; right: 0;
+    padding: 24px;
+    display: flex; flex-direction: column; gap: 6px;
+  }
+  .hb-tag { display: inline-block; background: rgba(201,168,124,0.25); border: 1px solid rgba(201,168,124,0.6);
+    color: #faf6ef; font-size: 12px; padding: 4px 12px; border-radius: 12px;
+    font-family: 'Apple SD Gothic Neo', 'Noto Sans KR', sans-serif; width: fit-content; }
+  .hb-main { font-size: 17px; font-weight: 700; color: #faf6ef; margin-top: 4px; }
+  .hb-sub { font-size: 12px; color: #d4b896;
+    font-family: 'Apple SD Gothic Neo', 'Noto Sans KR', sans-serif; }
+
   /* ── RESPONSIVE ── */
   @media (max-width: 768px) {
     .nav { padding: 12px 20px; }
@@ -187,15 +240,30 @@
     .quote-img { width: 100%; height: 200px; }
     footer { flex-direction: column; gap: 12px; text-align: center; padding: 24px; }
     .footer-info { text-align: center; }
+    .hankan-inner { grid-template-columns: 1fr; }
+    .hankan-visual { height: 280px; }
+    .hankan-stats { flex-wrap: wrap; }
+    .stat-item { min-width: calc(50% - 1px); }
+    .announce-bar { font-size: 11px; padding: 9px 16px; }
   }
 </style>
 </head>
 <body>
 
+<!-- ANNOUNCE BAR -->
+<div class="announce-bar">
+  🗂 <strong>한칸책장</strong> 입점 신청 접수 중
+  <span class="announce-sep">|</span>공예작가·창작자 대상
+  <span class="announce-sep">·</span>월 10,000원
+  <span class="announce-sep">·</span>약 30칸 운영
+  <a href="#hankan">자세히 보기 →</a>
+</div>
+
 <!-- NAV -->
 <nav class="nav">
   <a href="/" class="nav-logo">오늘<span>책</span>방</a>
   <div class="nav-links">
+    <a href="#hankan">한칸책장</a>
     <a href="#why">모임 소개</a>
     <a href="#programs">프로그램</a>
     <a href="#location">오시는 길</a>
@@ -217,13 +285,55 @@
   <div class="hero-right">
     <img src="https://images.unsplash.com/photo-1749733600739-23f17b79f788?w=900&q=80&fit=crop" alt="독립서점 오늘책방 내부" />
     <div class="hero-right-badge">
-      <div class="badge-title">매월 운영 프로그램</div>
-      <div class="badge-tags">독서모임 · 북토크 · 글쓰기</div>
+      <div class="badge-title">오늘책방 3가지 핵심 서비스</div>
+      <div class="badge-tags">독서모임 · 공간 대관 · 한칸책장</div>
     </div>
   </div>
 </div>
 
-<!-- ② WHY -->
+<!-- ② 한칸책장 -->
+<section id="hankan" class="hankan-section">
+  <div class="hankan-inner">
+    <div>
+      <div class="section-label">창작자를 위한 공간 임대</div>
+      <h2 class="section-title">한칸책장 —<br>나만의 전시·판매 칸</h2>
+      <p class="section-sub">오늘책방 우측 벽면에 조성되는 약 30칸 규모의 임대 책장입니다. 공예작가·창작자라면 누구나 한 칸을 빌려 작품과 책을 전시·판매할 수 있습니다.</p>
+      <div class="hankan-stats">
+        <div class="stat-item">
+          <div class="stat-num">30<span>칸</span></div>
+          <div class="stat-label">전체 운영 규모</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-num">10,000<span>원</span></div>
+          <div class="stat-label">월 임대료</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-num">100<span>%</span></div>
+          <div class="stat-label">판매 수익<br>작가 귀속</div>
+        </div>
+      </div>
+      <div class="hankan-features">
+        <div class="hf-item"><div class="hf-dot"></div>연 단위 임대 (월 약 10,000원 수준)</div>
+        <div class="hf-item"><div class="hf-dot"></div>벽면 부착형 책장 1칸 단위 운영</div>
+        <div class="hf-item"><div class="hf-dot"></div>판매 수익은 입점 작가에게 100% 귀속</div>
+        <div class="hf-item"><div class="hf-dot"></div>주말 순환 운영 — 작가가 공간 운영에 직접 참여</div>
+        <div class="hf-item"><div class="hf-dot"></div>'이달의 작가' 전시 콘텐츠 연계 가능</div>
+      </div>
+      <a href="https://instagram.com/oneul_bookstore" target="_blank" class="btn-primary" style="display:inline-block;">입점 문의하기 →</a>
+    </div>
+    <div class="hankan-visual">
+      <img src="https://images.unsplash.com/photo-1507842217343-583bb7270b66?w=800&q=80&fit=crop" alt="한칸책장 — 벽면 책장 임대 공간" />
+      <div class="hankan-overlay"></div>
+      <div class="hankan-badge">
+        <div class="hb-tag">🗂 입점 신청 접수 중</div>
+        <div class="hb-main">한칸책장 · 약 30칸 운영</div>
+        <div class="hb-sub">공예작가 및 창작자 대상 · 연 단위 임대</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ③ WHY -->
 <section id="why">
   <div class="section-label">왜 오늘책방인가요</div>
   <h2 class="section-title">혼자라면 못 했을 것들을<br>함께 합니다</h2>
@@ -381,7 +491,7 @@
       </div>
       <div class="location-row">
         <div class="location-key">운영</div>
-        <div class="location-val">평일 14:00 – 21:00<br>주말·프로그램 운영일 탄력 운영</div>
+        <div class="location-val">수요일 – 일요일 운영<br>평일 11:00 – 20:00<br>주말 한칸책장 입점 작가 순환 운영</div>
       </div>
       <div class="location-row">
         <div class="location-key">문의</div>
